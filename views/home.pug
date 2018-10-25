@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .main.container.clearfix
+    h4.hometext Hello #{name},
+    p.lead Welcome to ISS Locator!
+    p.lead Here, you can find the current location of the International Space Station! The International Space Station is moving at close to 28,000km/h so its location changes really fast! Wanna know where it is now?
+        a.btn.btn-info-outline.btn-md(class='showbtn') Locate the ISS Now!  
+    h6(class='key') #{apiKey}
+    //Get ISS data from Open Notify
+    script(src='/scripts/getissdata.js')
+    p.lead You can also find out when the International space Locator will be at a place near you! Just enter the place's name/address below and click search! 
+      form(method='POST' action='/home')
+        div.form-group
+          input#search.form-control(style="width: 300px;", class='search' type='text', placeholder='City/Place' name='search')
+        button.btn.btn-primary(class='searchbtn' type='submit') Search
+        //Get the searched place's Geodata from Google Maps
+        script(src='/scripts/getgeodata.js')
+
+        

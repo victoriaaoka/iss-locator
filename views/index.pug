@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .main.container.text-xs-center
+    h1 The International Space Station Locator
+    br
+    p.lead With ISS Locator, you can view the current 
+      a.lead(href='https://en.wikipedia.org/wiki/International_Space_Station') International Space Station  
+      p.lead position in real time on a Google map!
+    a.btn.btn-info-outline.btn-lg(class='showbtn') Click here to view the current ISS Location
+    script(src='/scripts/getissdata.js')
+
+
