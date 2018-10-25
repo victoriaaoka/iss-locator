@@ -1,0 +1,164 @@
+
+/* Base Styles */
+
+body {
+	background: #1d2a33;
+	background-size: cover; 
+}
+#textcontainer{
+	color: #fff;
+	margin-top: 80px;
+}
+#map {
+	height: 80%;
+	width: 100%;
+}
+.data{
+	display:none;
+}
+.key{
+	display:none;
+}
+.hometext{
+	color: rgba(49,176,213);
+}
+.passtimestable{
+	color:rgba(49,176,213);
+	width: 70%;
+	height: 300px;
+	border: 2px;
+	border-color: #fff;
+}
+a:hover {
+	color: rgba(49,176,213, .7);
+}
+a{
+	color: rgba(49,176,213);
+}
+
+/* Component Styles */
+
+.navbar {
+	padding: 1rem 0;
+	background: rgba(0,0,0, .25);
+}
+.lead {
+	margin-bottom: 2.5rem;
+}
+.main {
+	color: #fff;
+	min-height: calc(100vh - 34px);
+}
+
+/* Modifier Styles */
+
+.nav-items .nav-link {
+	margin: 0 1rem;
+}
+.navbar-brand {
+	margin: 0;
+}
+.navbar .nav-link,
+.navbar .btn {
+	text-transform: uppercase;
+	font-size: .95rem;
+	margin-left: 20px; 
+}
+.list-group {
+	color: initial;
+}
+.label {
+	font-size: .88rem;
+	vertical-align: top;
+	margin: 3px 0 0 4px;
+}
+
+/* Button Styles */
+
+.btn-primary {
+	background: #417aba;
+	border-color: #417aba;
+}
+.btn-info {
+	background-color: #31b0d5;
+	border-color: #2aabd2;
+}
+.btn-info:hover {
+	background-color: #5bc0de;
+	border-color: #5bc0de;
+}
+.btn-light {
+	color: rgba(255,255,255, .75);
+	background: rgba(255,255,255, .12);
+}
+.btn-light:hover {
+	background: rgba(255,255,255, .2);	
+}
+.active,
+.btn {
+	transition: .4s;
+}
+
+/* Icon Styles */
+
+.icn-logo {
+	margin: 3px 3px 0;
+	float: left;
+}
+.options {
+	display: none;
+}
+.list-group-item:hover .options {
+	display: block;
+}
+.options .material-icons {
+	font-size: 1.25rem;
+	cursor: pointer;
+	margin-left: 1rem;
+	color: rgba(0,0,0, .35);
+}
+.options .material-icons:hover {
+	color: initial;
+}
+
+/* Media Queries */
+
+@media (min-width: 0) and (max-width: 47em) {
+	.navbar {
+		background: #1d2a33;
+	}
+	.nav-items .nav-item {
+		float: none;
+	}
+	.nav-items .nav-link  {
+		padding: .65rem 0;
+		display: block;
+	}
+	.nav-items {
+		padding: 1rem 0;
+		clear: left;
+	}
+	.navbar .btn {
+		margin-left: 1rem;
+	}
+	.main {
+		padding-top: 6rem;
+	}
+}
+
+@media (min-width: 48em) { 
+	.navbar {
+		min-height: 70px;
+	}
+	.navbar-nav .container {
+		display: -webkit-flex;
+		display: flex;
+	}
+	.nav-items {
+		margin-right: -5px;
+		margin-left: auto;
+	}
+	.main {
+		padding-top: 8rem;
+	}
+}
