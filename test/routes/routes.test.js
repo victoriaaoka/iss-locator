@@ -119,3 +119,47 @@ describe('Unit testing the /logout route', function() {
     });
 
 });
+
+describe('Unit testing the /about route', function() {
+
+    it('should return OK status', function() {
+      return request(app)
+        .get('/about')
+        .then(function(response){
+            assert.equal(response.status, 200)
+        })
+    });
+    it('should return about text on rendering', function() {
+        return request(app)
+        .get('/about')
+        .then(function(response){
+            expect(response.text).to.contain('About ISS Locator');
+        })
+    });
+});
+
+describe('Unit testing a route that does not exist', function() {
+
+    it('should return NOT-FOUND status', function() {
+      return request(app)
+        .get('/notfound')
+        .then(function(response){
+            assert.equal(response.status, 404)
+        })
+    });
+
+});
+
+describe('Unit testing the /register route for POST', function() {
+    let data = {email: 'v@g.com',
+                city: 'krk',
+                password: 'Vhyg33k'}
+    it('should return a BAD-REQUEST status', function() {
+        return request(app)
+          .post('/register')
+          .send(data)
+          .then(function(response) {
+            assert.equal(response.status, 400);
+          })
+      });
+});
