@@ -102,7 +102,11 @@ router.get('/home', function(req, res, next) {
         if (error) {
           return next(error);
         } else {
-          return res.render('home', { title: 'Home', name: user.name, apiKey: process.env.GOOGLE_MAPS_API_KEY});
+          return res.render('home', { 
+            title: 'Home', 
+            name: user.name, 
+            apiKey: process.env.GOOGLE_MAPS_API_KEY, 
+            city: user.city});
         }
       });
 });
@@ -126,12 +130,6 @@ router.get('/passtimes', function(req, res, next){
   }
   return res.render('passtimes', {place: req.query, apiKey: process.env.GOOGLE_MAPS_API_KEY}); 
 })
-
-//Redirect /passtimes/*
-router.get('/passtimes/*', function(req, res, next){
-  return res.redirect('/home');
-})
-
 
 // GET /logout
 router.get('/logout', function(req, res, next) {
