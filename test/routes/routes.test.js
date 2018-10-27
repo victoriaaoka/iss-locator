@@ -13,19 +13,16 @@ describe('Unit testing the /index route', function() {
         })
     });
 
-});
-
-describe('Unit testing the /about route', function() {
-
-    it('should return OK status', function() {
-      return request(app)
-        .get('/about')
+    it('should return text on rendering', function() {
+        return request(app)
+        .get('/')
         .then(function(response){
-            assert.equal(response.status, 200)
+            expect(response.text).to.contain('The International Space Station Locator');
         })
     });
 
 });
+
 
 describe('Unit testing the /login route', function() {
 
@@ -34,6 +31,14 @@ describe('Unit testing the /login route', function() {
         .get('/login')
         .then(function(response){
             assert.equal(response.status, 200)
+        })
+    });
+
+    it('should return login on rendering', function() {
+        return request(app)
+        .get('/login')
+        .then(function(response){
+            expect(response.text).to.contain('Login');
         })
     });
 
@@ -49,6 +54,14 @@ describe('Unit testing the /register route', function() {
         })
     });
 
+    it('should return sign-up form on rendering', function() {
+        return request(app)
+        .get('/register')
+        .then(function(response){
+            expect(response.text).to.contain('Sign Up');
+        })
+    });
+
 });
 
 describe('Unit testing the /map route', function() {
@@ -58,6 +71,14 @@ describe('Unit testing the /map route', function() {
         .get('/map')
         .then(function(response){
             assert.equal(response.status, 200)
+        })
+    });
+
+    it('should return a map on rendering', function() {
+        return request(app)
+        .get('/map')
+        .then(function(response){
+            expect(response.text).to.contain('Map');
         })
     });
 
