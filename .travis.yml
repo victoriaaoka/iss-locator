@@ -1,12 +1,13 @@
 language: node_js
-  node_js:
-    - 0.8
-services:
-  - mongodb
+
+node_js: "node"
+
+services: mongodb
+
 install:
   - npm install
 
 script: npm test
 
 after_success:
-   - coveralls
+  - coveralls
