@@ -10,7 +10,4 @@ install:
 script: npm test
 
 after_success:
-  - ./node_modules/karma/bin/karma start
-  - istanbul cover ./node_modules/mocha/bin/_mocha server/api/**/*.spec.js
-  - cat ./coverage/lcov.info ./coverage/karma/**/*.info > lcov.info 
-  - node node_modules/lcov-filter/index.js lcov.info config | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage  
+  - nyc npm test && nyc report --reporter=text-lcov | coveralls 
