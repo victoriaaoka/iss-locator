@@ -46,6 +46,24 @@ describe('Test the user model', function() {
         });
     });
 
+    it('should ensure that all fields have been filled', function(done) {
+        //Saving a user without an email value
+        const  userData = {
+            name: 'Aoka',
+            email:'',
+            city:'nbo',
+            password:'Va12' 
+        }
+        const user = new User(userData);
+        user.save((err) => {
+            expect(err).to.exist
+            .and.be.instanceof(Error);
+            console.log(err);
+            expect(err).have.property('_message', 'User validation failed');
+            done();
+        });
+    });
+
     it('should not save duplicate emails', function(done) {
         //Saving a user wu=ith the email: user1@gmail.com again
         const  userData = {
@@ -81,7 +99,7 @@ describe('Test the user model', function() {
     });
 
     it('should ensure the password contains more than 6 characters', function(done) {
-        //Saving a user wu=ith the email: user1@gmail.com again
+        //Saving a user with the password: Va12
         const  userData = {
             name: 'Aoka',
             email:'userwapword@gmail.com',
@@ -98,7 +116,7 @@ describe('Test the user model', function() {
     });
 
     it('should ensure the password contains atleast one UpperCase letter', function(done) {
-        //Saving a user wu=ith the email: user1@gmail.com again
+        //Saving a user with the password: va123f
         const  userData = {
             name: 'Aoka',
             email:'userwapword@gmail.com',
