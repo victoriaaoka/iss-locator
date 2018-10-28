@@ -42,6 +42,21 @@ describe('Unit testing the /login route', function() {
         })
     });
 
+    it('it should return an error when a non-registered user logs in', (done) => {
+        const  logindata = {
+            email:'notregduser@gmail.com',
+            password:'Vaoka123',
+        }
+        request(app)
+            .post('/login')
+            .send(logindata)
+            .end((err, res) => { 
+            expect(res).to.exist;
+            expect(res).have.property('text')
+            .to.contain('Wrong Email or password');
+            }).finally(done());
+    });
+
 });
 
 describe('Unit testing the /register route', function() {
@@ -94,6 +109,20 @@ describe('Unit testing the /home route', function() {
         })
     });
 
+    it('it returns an error when a city/place to search is not entered', (done) => {
+        const  data = {
+            search: ''
+        }
+        request(app)
+            .post('/home')
+            .send(data)
+            .end((err, res) => { 
+            expect(res).to.exist;
+            expect(res).have.property('text')
+            .to.contain('Please enter a Place Name or address to search!');
+            done();
+            })
+        });
 });
 
 describe('Unit testing the /passtimes route ', function() {
@@ -179,4 +208,24 @@ describe('Unit testing the /register route for POST ', function() {
           })
           .finally(done());
         });
+
+        it('it returns an error when the passwords do not match', (done) => {
+            const  userData = {
+                name: 'Aoka',
+                email:'user1@gmail.com',
+                city:'nbo',
+                password:'Vaoka123',
+                confirmPassword:'V123'
+            }
+            request(app)
+              .post('/register')
+              .send(userData)
+              .end((err, res) => { 
+                expect(res).to.exist;
+                expect(res).have.property('text')
+                .to.contain('The passwords do not match!');
+                done();
+              })
+        });
+         
 });
