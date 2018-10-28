@@ -33,7 +33,7 @@ router.post('/login', function(req, res, next) {
     });
   } else {
     const err = new Error('Email and password are required.');
-    err.status = 401;
+    err.status = 400;
     return next(err);
   }
 });
