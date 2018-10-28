@@ -8,7 +8,7 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
       //Display content based on user authentication
       .nav-items.clearfix
         if !currentUser
-          a.nav-item.nav-link(href='about') About
+          a.nav-item.nav-link(href='/about') About
           a.btn.btn-info.pull-md-right(href='/register') Sign up
       if currentUser
         div
