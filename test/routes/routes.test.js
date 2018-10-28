@@ -150,7 +150,7 @@ describe('Unit testing a route that does not exist', function() {
 
 });
 
-describe('Unit testing the /register route for POST', function() {
+describe('Unit testing the /register route for POST ', function() {
     let data = {email: 'v@g.com',
                 city: 'krk',
                 password: 'Vhyg33k'}
