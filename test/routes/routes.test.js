@@ -57,6 +57,23 @@ describe('Unit testing the /login route', function() {
             }).finally(done());
     });
 
+    it('it should return an error when a user logs in without credentials', (done) => {
+        const  logindata = {
+            email:'',
+            password:'',
+        }
+        request(app)
+            .post('/login')
+            .send(logindata)
+            .end((err, res) => { 
+            expect(res).to.exist;
+            expect(res.status).to.equal(400);
+            expect(res).have.property('text')
+            .to.contain('Email and password are required.');
+            done();
+            });
+    });
+
 });
 
 describe('Unit testing the /register route', function() {
