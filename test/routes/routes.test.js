@@ -162,4 +162,21 @@ describe('Unit testing the /register route for POST ', function() {
             assert.equal(response.status, 400);
           })
       });
+
+      it('it should Register a user successfully and redirect to /home', (done) => {
+        const  userData = {
+            name: 'Aoka',
+            email:'user1@gmail.com',
+            city:'nbo',
+            password:'Vaoka123',
+            confirmPassword:'Vaoka123'
+        }
+        request(app)
+          .post('/register')
+          .send(userData)
+          .end((err, res) => { 
+            res.should.have.status(302); 
+          })
+          .finally(done());
+        });
 });
