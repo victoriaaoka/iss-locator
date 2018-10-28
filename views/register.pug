@@ -8,19 +8,19 @@ block content
                 // register form
                 form(method='POST' action='/register')
                     div.form-group
-                        label(for='name') Name:
-                        input#name.form-control(type='text', placeholder='first and last' name='name')
+                        label(for='name') Name*
+                        input#name.form-control(type='text', placeholder='first and last Names' name='name')
                     div.form-group
-                        label(for='email') Email:
-                        input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                        label(for='email') Email*
+                        input#email.form-control(type='email', placeholder='example@email.com' name='email')
                     div.form-group
-                        label(for='city') City:
+                        label(for='city') City*
                         input#city.form-control(type='text', placeholder='Your Location/City' name='city')
                     div.form-group
-                        label(for='pw') Password: 
+                        label(for='pw') Password* 
                             i Should contain atleast 6 characters: Numbers, UpperCase and LowerCase letters!
                         input#pw.form-control(type='password', placeholder='Password' name='password')
                     div.form-group
-                        label(for='pw2') Confirm Password:
+                        label(for='pw2') Confirm Password*
                         input#pw2.form-control(type='password', placeholder='Confirm Password' name='confirmPassword')
                     button.btn.btn-primary(type='submit') Sign up
