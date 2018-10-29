@@ -9,6 +9,7 @@ btn.addEventListener('click', () => {
         }).then(data => {
             const latitude = data.results[0].geometry.location.lat;
             const longitude = data.results[0].geometry.location.lng;
-            window.location.href = `/passtimes/?place=${search.value}&lat=${latitude}&long=${longitude}`;
+            const place = data.results[0].formatted_address;
+            window.location.href = `/passtimes/?s=${search.value}&place=${place}&lat=${latitude}&long=${longitude}`;
         }).catch(err => {console.log(err)});
 });

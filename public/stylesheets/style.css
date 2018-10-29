@@ -28,6 +28,10 @@ body {
 	height: 300px;
 	border: 2px;
 	border-color: #fff;
+	visibility: hidden;
+}
+.pastimesextras{
+	visibility: hidden;
 }
 a:hover {
 	color: rgba(49,176,213, .7);
@@ -63,6 +67,9 @@ a{
 	text-transform: uppercase;
 	font-size: .95rem;
 	margin-left: 20px; 
+}
+#showb{
+	margin-left: 20px;
 }
 .list-group {
 	color: initial;

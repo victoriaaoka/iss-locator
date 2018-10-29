@@ -3,27 +3,27 @@ extends layout
 block content
   .main.container.clearfix
     h3.hometext International Space Station Pass Times
-    p.lead The table below shows the next 5 ISS pass times for #{place.place}
+    p.lead(id="loader") Fetching ISS passtimes for #{place.s} 
+        i [#{place.place}]. Please wait...
     h3(class='data') #{place.place}
     h3(class='data') #{place.lat}
     h3(class='data') #{place.long}
     h6(class='key') #{apiKey}
+    h3(class='data') #{place.s}
     //Create the table that will hold the passtimes
     table(class='passtimestable')
         tr
             th Date/Time
             th Duration in Seconds
-    form(method='POST' action='/home')
-    div.form-group
-        input#search.form-control(style="width: 300px;", class='search' type='text', placeholder='City/Place' name='search')
-    button.btn.btn-primary(class='searchbtn' type='submit') Search Again
-    br
-    br
-    //Get the searched place's Geodata from Google Maps
-    script(src='/scripts/getgeodata.js')
-    p.lead Would you like to receive Email notifications about the ISS passes at this place?
+    div(class='pastimesextras')
+        form(method='POST' action='/home')
+        div.form-group
+            input#search.form-control(style="width: 300px;", class='search' type='text', placeholder='City/Place' name='search')
+        button.btn.btn-primary(class='searchbtn' type='submit') Search Again
         br
-        button.btn.btn-primary(class='searchbtn' type='submit') Subscribe here!
+        br
+        //Get the searched place's Geodata from Google Maps
+        script(src='/scripts/getgeodata.js')
     //Get passtimes from Open Notify
     script(src='/scripts/getisspasstimes.js', async='', defer='')
     

@@ -76,8 +76,7 @@ UserSchema.pre('save', function(next){
         next();
     });
     }else{
-      const err = new Error('Ensure the password is atleast 6 characters long \
-                            and it contains Numbers, UpperCase and LowerCase letters!');
+      const err = new Error('Ensure the password is atleast 6 characters long and it contains Numbers, UpperCase and LowerCase letters!');
       err.status = 400;
       return next(err);
     }
