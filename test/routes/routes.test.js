@@ -5,15 +5,17 @@ const app = require('../../app');
 
 describe('Unit testing the /index route', function() {
 
-    it('should return OK status', function() {
+    it('should return OK status with a GET request', function() {
+        //Test that GET /index route returns a status code of 200
       return request(app)
         .get('/')
         .then(function(response){
             assert.equal(response.status, 200)
-        })
+        });
     });
 
     it('should return text on rendering', function() {
+        //Test that GET /index route renders the landing page text
         return request(app)
         .get('/')
         .then(function(response){
@@ -23,10 +25,10 @@ describe('Unit testing the /index route', function() {
 
 });
 
-
 describe('Unit testing the /login route', function() {
 
-    it('should return OK status', function() {
+    it('should return OK status with a GET request', function() {
+        //Test that GET /login route returns a status code of 200
       return request(app)
         .get('/login')
         .then(function(response){
@@ -35,6 +37,7 @@ describe('Unit testing the /login route', function() {
     });
 
     it('should return login on rendering', function() {
+        //Test that GET /login route renders the login form
         return request(app)
         .get('/login')
         .then(function(response){
@@ -43,6 +46,7 @@ describe('Unit testing the /login route', function() {
     });
 
     it('it should return an error when a non-registered user logs in', (done) => {
+        //Test that a non-registered user cannot login
         const  logindata = {
             email:'notregduser@gmail.com',
             password:'Vaoka123',
@@ -54,10 +58,12 @@ describe('Unit testing the /login route', function() {
             expect(res).to.exist;
             expect(res).have.property('text')
             .to.contain('Wrong Email or password');
-            }).finally(done());
+            }).finally(done()
+        );
     });
 
     it('it should return an error when a user logs in without credentials', (done) => {
+        //Test that a user cannot login without credentials
         const  logindata = {
             email:'',
             password:'',
@@ -71,14 +77,15 @@ describe('Unit testing the /login route', function() {
             expect(res).have.property('text')
             .to.contain('Email and password are required.');
             done();
-            });
+        });
     });
 
 });
 
 describe('Unit testing the /register route', function() {
 
-    it('should return OK status', function() {
+    it('should return OK status with a GET request', function() {
+        //Test that GET /register route returns a status code of 200
       return request(app)
         .get('/register')
         .then(function(response){
@@ -86,19 +93,20 @@ describe('Unit testing the /register route', function() {
         })
     });
 
-    it('should return sign-up form on rendering', function() {
+    it('should return a sign-up form on rendering', function() {
+        //Test that GET /register route renders a Registration/Sign up form
         return request(app)
         .get('/register')
         .then(function(response){
             expect(response.text).to.contain('Sign Up');
         })
     });
-
 });
 
 describe('Unit testing the /map route', function() {
 
-    it('should return OK status', function() {
+    it('should return OK status with a GET request', function() {
+        //Test that GET /map route returns a status code of 200
       return request(app)
         .get('/map')
         .then(function(response){
@@ -107,30 +115,32 @@ describe('Unit testing the /map route', function() {
     });
 
     it('should return a map on rendering', function() {
+        //Test that GET /map route renders the map page
         return request(app)
         .get('/map')
         .then(function(response){
             expect(response.text).to.contain('Map');
         })
     });
-
 });
 
 describe('Unit testing the /home route', function() {
 
     it('should return FORBIDDEN status when user is not logged in', function() {
-      return request(app)
-        .get('/home')
-        .then(function(response){
-            assert.equal(response.status, 403)
-        })
-    });
+        //Test that  the /home page cannot be accessed by unauthorized users
+        return request(app)
+            .get('/home')
+            .then(function(response){
+                assert.equal(response.status, 403)
+            });
+        });
 
-    it('it returns an error when a city/place to search is not entered', (done) => {
+    it('should return an error when a city/place to search is not entered', (done) => {
+        //Test that the /home search feature cannot be used without search data
         const  data = {
             search: ''
         }
-        request(app)
+        return request(app)
             .post('/home')
             .send(data)
             .end((err, res) => { 
@@ -145,18 +155,19 @@ describe('Unit testing the /home route', function() {
 describe('Unit testing the /passtimes route ', function() {
 
     it('should return FORBIDDEN status when user is not logged in', function() {
-      return request(app)
-        .get('/passtimes')
-        .then(function(response){
-            assert.equal(response.status, 403)
-        })
+        //Test that a user who is not logged in cannot view /passtimes
+        return request(app)
+            .get('/passtimes')
+            .then(function(response){
+                assert.equal(response.status, 403)
+            });
     });
-
 });
 
 describe('Unit testing the /logout route', function() {
 
     it('should return REDIRECTION status', function() {
+        //Test that GET /logout route returns a status code of 302
       return request(app)
         .get('/logout')
         .then(function(response){
@@ -169,38 +180,43 @@ describe('Unit testing the /logout route', function() {
 describe('Unit testing the /about route', function() {
 
     it('should return OK status', function() {
+        //Test that GET /about route returns a status code of 200
       return request(app)
         .get('/about')
         .then(function(response){
             assert.equal(response.status, 200)
         })
     });
+
     it('should return about text on rendering', function() {
+        //Test that GET /about route renders the about text
         return request(app)
-        .get('/about')
-        .then(function(response){
-            expect(response.text).to.contain('About ISS Locator');
-        })
+            .get('/about')
+            .then(function(response){
+                expect(response.text).to.contain('About ISS Locator');
+            });
     });
 });
 
 describe('Unit testing a route that does not exist', function() {
 
     it('should return NOT-FOUND status', function() {
-      return request(app)
-        .get('/notfound')
-        .then(function(response){
-            assert.equal(response.status, 404)
-        })
+        //Test that GET a route that does not exist returns a status code of 404 
+        return request(app)
+            .get('/notfound')
+            .then(function(response){
+                assert.equal(response.status, 404)
+            });
     });
-
 });
 
 describe('Unit testing the /register route for POST ', function() {
-    let data = {email: 'v@g.com',
+    
+    it('should return a BAD-REQUEST status', function() {
+        //Test that POST /register route with incomplete data returns a status code of 400
+        const data = {email: 'v@g.com',
                 city: 'krk',
                 password: 'Vhyg33k'}
-    it('should return a BAD-REQUEST status', function() {
         return request(app)
           .post('/register')
           .send(data)
@@ -209,7 +225,8 @@ describe('Unit testing the /register route for POST ', function() {
           })
       });
 
-      it('it should Register a user successfully and redirect to /home', (done) => {
+    it('should Register a user successfully and redirect to /home', (done) => {
+        //Test successful user registration
         const  userData = {
             name: 'Aoka',
             email:'user1@gmail.com',
@@ -223,10 +240,12 @@ describe('Unit testing the /register route for POST ', function() {
           .end((err, res) => { 
             res.should.have.status(302); 
           })
-          .finally(done());
-        });
+          .finally(done()
+        );
+    });
 
-        it('it returns an error when the passwords do not match', (done) => {
+    it('should return an error when the passwords do not match', (done) => {
+        //Test /POST register with passwords that do not match
             const  userData = {
                 name: 'Aoka',
                 email:'user1@gmail.com',
@@ -242,7 +261,6 @@ describe('Unit testing the /register route for POST ', function() {
                 expect(res).have.property('text')
                 .to.contain('The passwords do not match!');
                 done();
-              })
-        });
-         
+            });
+    });       
 });
