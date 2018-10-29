@@ -55,5 +55,5 @@ $ npm test
 ## Built with
 - Node 
 - Express
-- Pug
+- Pug & CSS
 - Mongodb
