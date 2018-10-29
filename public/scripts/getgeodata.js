@@ -7,9 +7,16 @@ btn.addEventListener('click', () => {
         .then(response => {
             return response.json();
         }).then(data => {
-            const latitude = data.results[0].geometry.location.lat;
-            const longitude = data.results[0].geometry.location.lng;
-            const place = data.results[0].formatted_address;
-            window.location.href = `/passtimes/?s=${search.value}&place=${place}&lat=${latitude}&long=${longitude}`;
+            if(data.status === 'ZERO_RESULTS'){
+                console.log('Place Not found!');
+                const latitude = 0;
+                const longitude = 0;
+                window.location.href = `/passtimes/?s=${search.value}&lat=${latitude}&long=${longitude}`;
+            }else{
+                const latitude = data.results[0].geometry.location.lat;
+                const longitude = data.results[0].geometry.location.lng;
+                const place = data.results[0].formatted_address;
+                window.location.href = `/passtimes/?s=${search.value}&place=${place}&lat=${latitude}&long=${longitude}`;
+            }
         }).catch(err => {console.log(err)});
 });
