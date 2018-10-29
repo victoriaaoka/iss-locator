@@ -1,12 +1,12 @@
 
 const expect = require('chai').expect;
-const User = require('../../models/user');
 const mongoose = require('mongoose');
-
+const User = require('../../models/user');
 
 describe('Test the user model', function() {
 
     before(function (done) {
+        //connect to a test database
         mongoose.connect('mongodb://localhost:27017/testdb', { useNewUrlParser: true });
         const db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error'));
@@ -14,10 +14,11 @@ describe('Test the user model', function() {
           console.log('Connected to test database!');
           done();
         });
-      });
+    });
 
     it('should be invalid if any field is empty', function(done) {
-        const user = new User();
+        //Testing with an empty data object
+        const user = new User({});
         user.validate(function(err) {
             expect(err.errors.email).to.exist;
             expect(err.errors.name).to.exist;
@@ -27,8 +28,8 @@ describe('Test the user model', function() {
         });
     });
 
-
     it('should save a new user successfully', function(done) {
+        //Testing successful user registration with valid data
         const  userData = {
             name: 'Aoka',
             email:'user1@gmail.com',
@@ -58,14 +59,13 @@ describe('Test the user model', function() {
         user.save((err) => {
             expect(err).to.exist
             .and.be.instanceof(Error);
-            console.log(err);
             expect(err).have.property('_message', 'User validation failed');
             done();
         });
     });
 
     it('should not save duplicate emails', function(done) {
-        //Saving a user wu=ith the email: user1@gmail.com again
+        //Saving a user with the email: user1@gmail.com again who has been registered before.
         const  userData = {
             name: 'Aoka',
             email:'user1@gmail.com',
@@ -82,6 +82,7 @@ describe('Test the user model', function() {
     });
 
     it('should hash the saved passwords', function(done) {
+        //Saving a new user and checking that the text password is not equal to the password stored in the db
         const  userData = {
             name: 'Aoka',
             email:'userwahash@gmail.com',
@@ -99,7 +100,7 @@ describe('Test the user model', function() {
     });
 
     it('should ensure the password contains more than 6 characters', function(done) {
-        //Saving a user with the password: Va12
+        //Saving a user with the password: Va12 whis is less than 6 characters
         const  userData = {
             name: 'Aoka',
             email:'userwapword@gmail.com',
@@ -116,7 +117,7 @@ describe('Test the user model', function() {
     });
 
     it('should ensure the password contains atleast one UpperCase letter', function(done) {
-        //Saving a user with the password: va123f
+        //Saving a user with the password: va123f which contains no uppercase letters
         const  userData = {
             name: 'Aoka',
             email:'userwapword@gmail.com',
@@ -133,12 +134,12 @@ describe('Test the user model', function() {
     });
 
     it('should ensure the password contains atleast one LowerCase letter', function(done) {
-        //Saving a user wu=ith the email: user1@gmail.com again
+        //Saving a user with the password: VA123F which contains no lowercase letters.
         const  userData = {
             name: 'Aoka',
             email:'userwapword@gmail.com',
             city:'nbo',
-            password:'va123f' 
+            password:'VA123F' 
         }
         const user = new User(userData);
         user.save((err) => {
@@ -150,9 +151,9 @@ describe('Test the user model', function() {
     });
 
     after(function(done){
+        //Remove the test databse and close the db connection
         mongoose.connection.db.dropDatabase(function(){
             mongoose.connection.close(done);
         });
     });
-
 });
