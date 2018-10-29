@@ -140,7 +140,7 @@ describe('Unit testing the /home route', function() {
         const  data = {
             search: ''
         }
-        return request(app)
+        request(app)
             .post('/home')
             .send(data)
             .end((err, res) => { 
