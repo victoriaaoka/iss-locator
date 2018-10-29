@@ -1,5 +1,5 @@
-# [ISS-LOCATOR](https://iss-locator-staging.herokuapp.com/) <br /> [![Build Status](https://travis-ci.org/victoriaaoka/iss-locator.svg?branch=chore-test-routes-%23161437395)](https://travis-ci.org/victoriaaoka/iss-locator)  [![Coverage Status](https://coveralls.io/repos/github/victoriaaoka/iss-locator/badge.svg?branch=chore-test-routes-%23161437395)](https://coveralls.io/github/victoriaaoka/iss-locator?branch=chore-test-routes-%23161437395)
-[ISS-Locator](https://iss-locator-staging.herokuapp.com/) is an app that shows the current position of the [International Space Station](https://en.wikipedia.org/wiki/International_Space_Station) on a Google Map. 
+# [ISS-LOCATOR](http://iss-locator-staging.herokuapp.com/) <br /> [![Build Status](https://travis-ci.org/victoriaaoka/iss-locator.svg?branch=chore-test-routes-%23161437395)](https://travis-ci.org/victoriaaoka/iss-locator)  [![Coverage Status](https://coveralls.io/repos/github/victoriaaoka/iss-locator/badge.svg?branch=chore-test-routes-%23161437395)](https://coveralls.io/github/victoriaaoka/iss-locator?branch=chore-test-routes-%23161437395)
+[ISS-Locator](http://iss-locator-staging.herokuapp.com/) is an app that shows the current position of the [International Space Station](https://en.wikipedia.org/wiki/International_Space_Station) on a Google Map. 
 
 The data used by the app is retrieved from [Open Notify](http://open-notify.org/) as well as [Google Maps](https://cloud.google.com/maps-platform/). 
 
