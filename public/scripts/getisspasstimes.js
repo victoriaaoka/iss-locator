@@ -13,16 +13,16 @@ if(parseFloat(lat) === 0 && parseFloat(long) === 0){
     passTimesExtras.style.visibility = 'visible';
 }else{
     //Use JSONP data to get the next 5 Iss pass-times and add them to a table. The timezone is the default OS timezone.
-    $.getJSON(`http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${long}&n=5&callback=?`, function(data) {
+    $.getJSON(`http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${long}&n=5&callback=?`, data => {
         loader.innerHTML = `The table below shows the next 5 ISS pass times for ${placeData[3].innerHTML} <i>[ ${placeData[0].innerHTML} ]</i>`
         table.style.display = 'table';
         passTimesExtras.style.visibility = 'visible';
-            data['response'].forEach(function (d) {
+            data['response'].forEach( d => {
                 const date = new Date(d['risetime']*1000);
                 const duration = d['duration']
-                let datarow = table.insertRow(1);
-                let dateCell = datarow.insertCell(0);
-                let durationCell = datarow.insertCell(1);
+                const datarow = table.insertRow(1);
+                const dateCell = datarow.insertCell(0);
+                const durationCell = datarow.insertCell(1);
                 dateCell.innerHTML = date.toString();
                 durationCell.innerHTML = duration;
             });
