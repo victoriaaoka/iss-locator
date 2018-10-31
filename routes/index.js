@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 // GET / ie. the index page
 router.get('/', function(req, res, next) {
@@ -93,7 +93,7 @@ router.post('/register', function(req, res, next){
 // GET /home
 router.get('/home', function(req, res, next) {
 	if (! req.session.userId ) {
-		const err = new Error("Please login to view this page.");
+		const err = new Error('Please login to view this page.');
 		err.status = 403;
 		return next(err);
 	}
@@ -124,7 +124,7 @@ router.post('/home', function(req, res, next){
 //GET /passtimes
 router.get('/passtimes', function(req, res, next){
 	if (! req.session.userId ) {
-		const err = new Error("Please login to view this page.");
+		const err = new Error('Please login to view this page.');
 		err.status = 403;
 		return next(err);
 	}

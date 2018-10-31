@@ -143,9 +143,9 @@ describe('Unit testing the /home route', function() {
 		request(app)
 			.post('/home')
 			.send(data)
-			.end((err, res) => { 
-				expect(res).to.exist;
-				expect(res).have.property('text')
+			.end((err, response) => { 
+				expect(response).to.exist;
+				expect(response).have.property('text')
 					.to.contain('Please enter a Place Name or address to search!');
 				done();
 			});
@@ -237,8 +237,8 @@ describe('Unit testing the /register route for POST ', function() {
 		request(app)
 			.post('/register')
 			.send(userData)
-			.end((err, res) => { 
-				res.should.have.status(302); 
+			.end((response) => { 
+				response.should.have.status(302); 
 			})
 			.finally(done()
 			);
@@ -256,9 +256,9 @@ describe('Unit testing the /register route for POST ', function() {
 		request(app)
 			.post('/register')
 			.send(userData)
-			.end((err, res) => { 
-				expect(res).to.exist;
-				expect(res).have.property('text')
+			.end((err, response) => { 
+				expect(response).to.exist;
+				expect(response).have.property('text')
 					.to.contain('The passwords do not match!');
 				done();
 			});
