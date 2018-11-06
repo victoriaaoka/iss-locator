@@ -8,15 +8,15 @@ const app = express();
 
 //use sessions for tracking logins
 app.use(session({
-	secret: process.env.SECRET_KEY,
-	resave: true,
-	saveUninitialized: false
+  secret: process.env.SECRET_KEY,
+  resave: true,
+  saveUninitialized: false
 }));
 
 // make user ID available in templates
 app.use(function (req, res, next) {
-	res.locals.currentUser = req.session.userId;
-	next();
+  res.locals.currentUser = req.session.userId;
+  next();
 });
 
 //Connect to db
@@ -44,24 +44,24 @@ app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	const err = new Error('File Not Found');
-	err.status = 404;
-	next(err);
+  const err = new Error('File Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
 // define as the last app.use callback
 app.use(function(err, req, res, next) {
-	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: {}
-	});
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 // listen on port
 app.listen(process.env.PORT, function () {
-	console.log(`Express app listening on port ${process.env.PORT}`);
+  console.log(`Express app listening on port ${process.env.PORT}`);
 });
   
 module.exports = app;
