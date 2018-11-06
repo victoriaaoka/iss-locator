@@ -20,10 +20,12 @@ block content
         div.form-group
             input#search.form-control(style="width: 300px;", class='search' type='text', placeholder='City/Place' name='search')
         button.btn.btn-primary(class='searchbtn' type='submit') Search Again
+        a.btn.btn-primary.btn-md(class='showbtn' id='locateISS') Locate the ISS now!
         br
         br
         //Get the searched place's Geodata from Google Maps
         script(src='/scripts/getgeodata.js')
     //Get passtimes from Open Notify
     script(src='/scripts/getisspasstimes.js', async='', defer='')
+    script(src='/scripts/getissdata.js')
     
