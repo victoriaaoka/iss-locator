@@ -32,6 +32,9 @@ body {
 .pastimesextras{
 	visibility: hidden;
 }
+#locateISS{
+	margin-left: 180px;
+}
 a:hover {
 	color: #076f8f;
 }
