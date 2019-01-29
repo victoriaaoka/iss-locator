@@ -1,15 +1,39 @@
 {
-    "name": "isslocator",
-    "version": "1.0.0",
-    "description": "",
-    "main": "app.js",
-    "dependencies": {},
-    "devDependencies": {},
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node ./app"
-    },
-    "keywords": [],
-    "author": "Victoria Aoka",
-    "license": "ISC"
-  }
+  "name": "isslocator",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.4",
+    "nodemon": "^1.18.4",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "supertest": "^3.3.0"
+  },
+  "scripts": {
+    "test": "nyc mocha ./test --recursive --exit",
+    "start": "node ./app"
+  },
+  "keywords": [],
+  "author": "Victoria Aoka",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victoriaaoka/iss-locator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/victoriaaoka/iss-locator/issues"
+  },
+  "homepage": "https://github.com/victoriaaoka/iss-locator#readme",
+  "description": ""
+}
