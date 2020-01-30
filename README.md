@@ -3,6 +3,8 @@
 
 The data used by the app is retrieved from [Open Notify](http://open-notify.org/) as well as [Google Maps](https://cloud.google.com/maps-platform/). 
 
+The app can be viewed [here](http://iss-locator-staging.herokuapp.com/).
+
 ## Prerequisites: 
 - Ensure ```node``` is installed - [installation guide](https://nodejs.org/en/download/package-manager/)
 - Ensure mongoDB is installed and the mongo daemon is running - [installation guide](https://docs.mongodb.com/manual/installation/): 
